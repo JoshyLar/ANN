@@ -45,6 +45,7 @@ def ANN_calc(network):
                 for k in j.connections:
                     j.collector = j.collector + k.collector
     return network[2][0].collector
+
 if __name__ == "__main__":
     network_structure, input = open_files('networkstructure.txt', 'inputfile.txt')
     if network_structure[0] != len(input):
