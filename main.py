@@ -1,5 +1,10 @@
+import sys
 
 from node import node
+import time as t
+import pickle as p
+import random as r
+
 
 def open_files(file_name_one, file_name_two):#open the files and return the contents as a list
     network = []
@@ -14,12 +19,12 @@ def open_files(file_name_one, file_name_two):#open the files and return the cont
         network_structure_file.close;input_file.close
         exit()
 
-    network_structure,inputA = network_structure_file.read().strip().split(','),input_file.read().strip().split(',')
+    network_structure,inputA = network_structure_file.read().strip().split(','),input_file.read().strip().split(',')# split both files
     #network_structure = network_structure.split(',')
     for i in network_structure:
         network.append(int(i))
     for i in inputA:
-        input.append(int(i))
+        input.append(float(i))
     return network, input
 
 
@@ -45,15 +50,32 @@ def ANN_calc(network):
                 for k in j.connections:
                     j.collector = j.collector + k.collector
     return network[2][0].collector
-
+def make_test_file():
+    with open('test.txt', 'w') as test:
+        sys.stdout = test
+        for i in range(9999999):
+            print(r.uniform(0.0, 99.99), end = ',')
+        print(r.uniform(0.0, 99.99))
+        sys.stdout = sys.__stdout__
+        test.close()
 if __name__ == "__main__":
+
+    make_test_file()
+    #network_structure, input = open_files('networkstructure.txt', 'inputfile.txt')
     network_structure, input = open_files('networkstructure.txt', 'inputfile.txt')
     if network_structure[0] != len(input):
+        print(len(input))
         print("input layer, input value mismatch")
         exit()
+
+
+
+
     network = build_network(network_structure,input)
 
-print(ANN_calc(network))
 
+    print(ANN_calc(network))
 
+    with open('ANN.pickle','wb') as rick:#lol
+        p.dump(network,rick)
 
