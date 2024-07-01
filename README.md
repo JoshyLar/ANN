@@ -1,5 +1,5 @@
-Example of Artificial Neural Network Implementation in C++
-This repository provides an example of implementing an Artificial Neural Network (ANN) in C++. Please note that it does not include training functions.
+Example of Artificial Neural Network Implementation in Python
+This repository provides an example of implementing an Artificial Neural Network (ANN) in Python. Please note that it does not include training functions.
 
 Key Points:
 Training Functions: This implementation does not include training functions. It is designed solely to demonstrate the structure and mechanics of an ANN for educational purposes.
